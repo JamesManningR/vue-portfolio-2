@@ -1,0 +1,9 @@
+nginx:
+  build:
+    dockerfile: Dockerfile
+client:
+  build:
+    dockerfile: Dockerfile
+api:
+  build:
+    dockerfile: Dockerfile
