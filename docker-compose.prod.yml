@@ -1,9 +1,15 @@
-nginx:
-  build:
-    dockerfile: Dockerfile
-client:
-  build:
-    dockerfile: Dockerfile
-api:
-  build:
-    dockerfile: Dockerfile
+version: "3"
+services:
+  nginx:
+    build:
+      dockerfile: Dockerfile
+  client:
+    build:
+      dockerfile: Dockerfile
+  api:
+    build:
+      dockerfile: Dockerfile
+  mongo:
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}

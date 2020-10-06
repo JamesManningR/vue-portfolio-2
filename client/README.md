@@ -1,24 +1,35 @@
-# app
+# Mannnig Portfolio Frontend
 
-## Project setup
+## Docker run
+
+### hot-reloads for development
+
 ```
-npm install
+docker run -it -p 8080:8080 $(docker build -q -f Dockerfile.dev .)
 ```
 
-### Compiles and hot-reloads for development
+### Production
+
+```
+docker run -it $(docker build .)
+```
+
+## Node run
+
+### Dev server
+
 ```
 npm run serve
 ```
 
 ### Compiles and minifies for production
-```
-npm run build
-```
 
-### Lints and fixes files
 ```
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Lints and fixes files
+
+```
+npm run lint
+```

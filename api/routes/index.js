@@ -5,12 +5,14 @@ const router = express.Router();
 // Get routes
 
 // Use routes
-// Handle 404 error.
+
+
+// 404 route
 router.use("/404", function (req, res) {
   res.status(404).render("404");
 });
 
-// Handle 404 error.
+// Fallback route
 router.use("*", function (req, res) {
   res.status(404).redirect("/404");
 });
