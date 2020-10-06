@@ -6,12 +6,17 @@ const bodyParser = require("body-parser");
 const app = express();
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
-  res.send("Hello");
-});
+// Import Routes
+const routes = require("./routes");
+app.use(routes);
 
-app.get("/another", (req, res) => {
-  res.send("Another route");
+// Eroor Fallback Route
+app.use((err, req, res, next) => {
+  res.status(err.code || 500).json({
+    message: err.message || "Something went wrong",
+    code: err.code || 500,
+  });
+  return next();
 });
 
 // Init
