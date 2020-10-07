@@ -2,10 +2,12 @@ version: "3"
 services:
   mongo:
     container_name: mongo
-    image: mongo
+    image: mongo:latest
     restart: always
     ports:
       - 27017:27017
+    volumes:
+      - data:/data/db
 
   client:
     container_name: client
@@ -43,3 +45,6 @@ services:
       context: ./nginx
     ports:
       - "1337:8080"
+
+volumes:
+  data:

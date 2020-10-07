@@ -3,27 +3,34 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
-// Add features
+// Get ENV
+const mongoUri = `mongodb://${process.env.MONGO_URI}:${process.env.MONGO_PORT}`;
+
+// Add features ---------------------------------------------
 const app = express();
 app.use(bodyParser.json());
-
-//Database-------------------------------------------------
-mongoose.connect("mongodb://localhost/MakerBlog", {
-  useNewUrlParser: true,
-});
+// Deprecation error fix
 app.use(
   bodyParser.urlencoded({
     extended: true,
   })
 );
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
-app.set("view engine", "ejs");
 app.use(express.static("public"));
-//app.use(methodOverride("_method"));
+
+// Database -------------------------------------------------
+const connectDb = () => {
+  mongoose.connect(mongoUri, { useNewUrlParser: true });
+};
+connectDb();
+
+// Handle the database connection and retry as needed
+const db = mongoose.connection;
+db.on("error", (err) => {
+  console.log("There was a problem connecting to mongo: ", err);
+  console.log("Retrying");
+  setTimeout(() => connectDb(), 5000);
+});
+db.once("open", () => console.log("Successfully connected to mongo"));
 
 // Import Routes
 const routes = require("./routes");
