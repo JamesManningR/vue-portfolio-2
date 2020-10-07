@@ -1,3 +1,7 @@
+// Used for easy access to root dir (makes modules a lot easier to refactor)
+// 0 - Utilities
+global.__basedir = __dirname;
+
 // Import libraries
 const express = require("express");
 const bodyParser = require("body-parser");
