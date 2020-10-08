@@ -44,7 +44,7 @@ services:
       dockerfile: Dockerfile.dev
       context: ./nginx
     ports:
-      - "1337:8080"
+      - "1337:7888"
 
 volumes:
   data:

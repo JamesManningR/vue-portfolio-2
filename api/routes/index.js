@@ -8,6 +8,10 @@ const projectsRoute = require("./modules/projects");
 // Use routes
 router.use("/projects", projectsRoute);
 
+router.use("/", function (req, res) {
+  res.send("Hello, I'm here!");
+})
+
 // 404 route
 router.use("/404", function (req, res) {
   res.status(404).render("404");
